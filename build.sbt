@@ -6,7 +6,11 @@ name := "SciSparkTestExperiments"
 
 version := "1.0"
 
-scalaVersion := "2.10.6"
+scalaVersion := "2.10.5"
+
+//ivyScala := ivyScala.value map { _.copy(overrideScalaVersion = true) }
+
+//net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 scalacOptions := Seq("-feature", "-deprecation")
 
@@ -45,7 +49,8 @@ classpathTypes += "maven-plugin"
 
 libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.10" % "3.0.0-M15",
-  "org.apache.spark" % "spark-core_2.10" % "1.6.0" exclude("org.slf4j", "slf4j-api"),
+  "org.apache.httpcomponents" % "httpclient" % "4.3.6" force(),
+  "org.apache.spark" % "spark-core_2.10" % "1.6.0" exclude("org.slf4j", "slf4j-api") exclude("org.apache.httpcomponents", "httpclient"),
   "org.apache.spark" % "spark-mllib_2.10" % "1.6.0",
   //Math Libraries
   //"org.jblas" % "jblas" % "1.2.3",
@@ -57,11 +62,11 @@ libraryDependencies ++= Seq(
   // Nd4j scala api with netlib-blas backend
   "org.nd4j" % "nd4s_2.10" % "0.4-rc3.8",
   "org.nd4j" % "nd4j-x86" % "0.4-rc3.8",
-  "edu.ucar" % "opendap" % "2.2.2",
+  "edu.ucar" % "opendap" % "4.6.6",
   "joda-time" % "joda-time" % "2.8.1",
   "org.joda" % "joda-convert" % "1.8.1",
   "com.joestelmach" % "natty" % "0.11",
-  "edu.ucar" % "cdm" % "4.6.0"
+  "edu.ucar" % "cdm" % "4.6.6"
 )
 
 assemblyMergeStrategy in assembly := {
